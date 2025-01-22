@@ -173,11 +173,15 @@ const updatePlayerScores = () => {
         const playerDiv = document.createElement('div');
         playerDiv.classList.add('player-item'); // Add a CSS class for styling
 
+        // Create a container div for the player's name
+        const playerNameDiv = document.createElement('div');
         const playerName = document.createElement('p');
         playerName.textContent = `${player.name}: ${player.score} points`;
-        playerDiv.appendChild(playerName);
+        playerNameDiv.appendChild(playerName);
+        playerDiv.appendChild(playerNameDiv); // Add the player's name in a separate div
 
-        // Button to increment score for a correct answer
+        // Create a container div for the buttons
+        const buttonsDiv = document.createElement('div');
         const correctButton = document.createElement('button');
         correctButton.textContent = 'Correct';
         correctButton.addEventListener('click', () => {
@@ -185,7 +189,6 @@ const updatePlayerScores = () => {
             updatePlayerScores(); // Update the scores
         });
 
-        // Button to increment score for the opponent when wrong
         const wrongButton = document.createElement('button');
         wrongButton.textContent = 'Wrong';
         wrongButton.addEventListener('click', () => {
@@ -194,8 +197,10 @@ const updatePlayerScores = () => {
             updatePlayerScores(); // Update the scores
         });
 
-        playerDiv.appendChild(correctButton);
-        playerDiv.appendChild(wrongButton);
+        buttonsDiv.appendChild(correctButton);
+        buttonsDiv.appendChild(wrongButton);
+
+        playerDiv.appendChild(buttonsDiv); // Add the buttons in a separate div
 
         playerList.appendChild(playerDiv);
     });
